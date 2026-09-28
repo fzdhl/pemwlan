@@ -7,5 +7,5 @@
     <p><strong>Penulis:</strong> {{ $book->author }}</p> 
     <p><strong>Tahun:</strong> {{ $book->year }}</p> 
  
-    <a href="{{ route('books.index') }}">Kembali</a> 
+    <a href="{{ route('books.index2') }}">Kembali</a> 
 @endsection 
