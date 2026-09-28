@@ -11,7 +11,7 @@ class BookController extends Controller
     { 
         $books = Book::latest()->get(); 
  
-        return view('books.index2', compact('books')); 
+        return view('books.index', compact('books')); 
     } 
  
     public function create() 
