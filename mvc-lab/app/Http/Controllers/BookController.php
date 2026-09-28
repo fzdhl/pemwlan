@@ -21,12 +21,6 @@ class BookController extends Controller
 
     public function store(Request $request) 
     { 
-        $validated = $request->validate([ 
-            'title' => ['required', 'string', 'max:255'], 
-            'author' => ['required', 'string', 'max:150'], 
-            'year' => ['required', 'integer', 'between:1900,2100'], 
-        ]); 
-    
         Book::create($validated); 
     
         return redirect() 
