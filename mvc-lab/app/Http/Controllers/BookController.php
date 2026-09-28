@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -19,9 +21,9 @@ class BookController extends Controller
         return view('books.create'); 
     }
 
-    public function store(Request $request) 
+    public function store(StoreBookRequest $request) 
     { 
-        Book::create($validated); 
+        Book::create($request->validated()); 
     
         return redirect() 
             ->route('books.index') 
@@ -33,15 +35,20 @@ class BookController extends Controller
         return view('books.show', compact('book')); 
     } 
  
+ 
     public function edit(Book $book) 
     { 
-        // Diisi pada tahap update. 
+        return view('books.edit', compact('book')); 
     } 
- 
-    public function update(Request $request, Book $book) 
+    
+    public function update(UpdateBookRequest $request, Book $book) 
     { 
-        // Diisi pada tahap update. 
-    } 
+        $book->update($request->validated()); 
+    
+        return redirect() 
+            ->route('books.index') 
+            ->with('success', 'Buku berhasil diperbarui.'); 
+    }
  
     public function destroy(Book $book) 
     { 
