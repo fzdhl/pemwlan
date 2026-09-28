@@ -18,8 +18,8 @@
 </head> 
 <body> 
     <nav> 
-        <a href="{{ route('books.index2') }}">Daftar Buku</a> 
-        <a href="{{ route('books.create2') }}">Tambah Buku</a> 
+        <a href="{{ route('books.index') }}">Daftar Buku</a> 
+        <a href="{{ route('books.create') }}">Tambah Buku</a> 
     </nav> 
  
     @yield('content') 
