@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreBookRequest extends FormRequest
 { 
@@ -18,6 +18,7 @@ class StoreBookRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'], 
             'author' => ['required', 'string', 'max:150'], 
             'year' => ['required', 'integer', 'between:1900,2100'], 
+            'isbn' => ['required', 'string', 'max:255', Rule::unique('books', 'isbn')], 
         ]; 
     } 
 }

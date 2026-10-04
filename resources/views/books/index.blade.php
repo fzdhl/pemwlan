@@ -6,7 +6,7 @@
     <a href="{{ route('books.create') }}">Tambah Buku</a> 
  
     @if (session('success')) 
-        <p>{{ session('success') }}</p> 
+        <p class="success">{{ session('success') }}</p> 
     @endif 
  
     <table border="1" cellpadding="8" cellspacing="0"> 
@@ -15,6 +15,7 @@
                 <th>Judul</th> 
                 <th>Penulis</th> 
                 <th>Tahun</th> 
+                <th>ISBN</th> 
                 <th>Aksi</th> 
             </tr> 
         </thead> 
@@ -24,14 +25,27 @@
                     <td>{{ $book->title }}</td> 
                     <td>{{ $book->author }}</td> 
                     <td>{{ $book->year }}</td> 
+                    <td>{{ $book->isbn }}</td> 
                     <td> 
                         <a href="{{ route('books.show', $book) }}">Detail</a> 
+                        <a href="{{ route('books.edit', $book) }}">Edit</a> 
+ 
+                        <form 
+                            class="inline" 
+                            action="{{ route('books.destroy', $book) }}" 
+                            method="POST" 
+                            onsubmit="return confirm('Hapus buku ini?')" 
+                        > 
+                            @csrf 
+                            @method('DELETE') 
+                            <button type="submit">Hapus</button> 
+                        </form> 
                     </td> 
                 </tr> 
             @empty 
                 <tr> 
-                    <td colspan="4">Belum ada data buku.</td>
-               </tr> 
+                    <td colspan="5">Belum ada data buku.</td> 
+                </tr> 
             @endforelse 
         </tbody> 
     </table> 
